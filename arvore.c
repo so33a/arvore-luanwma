@@ -146,7 +146,27 @@ link rotR(ARVORE a, link h) {
 }
 
 #if 0
-void remover (ARVORE a, int key);
+void remover (ARVORE a, int key){
+   noh *p, *q;
+    if (r->esq == NULL) {
+       q = r->dir;
+       free (r);
+       return q;
+    }
+    p = r; q = r->esq;
+    while (q->dir != NULL) {
+       p = q; q = q->dir;
+    }
+    // q é nó anterior a r na ordem e-r-d
+    // p é pai de q
+    if (p != r) {
+       p->dir = q->esq;
+       q->esq = r->esq;
+    }
+    q->dir = r->dir;
+    free (r);
+    return q;
+}
 void removerNo (ARVORE a, link node);
 void destroiArvore(ARVORE a);
 #endif 
